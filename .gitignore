@@ -18,6 +18,7 @@ build/
 
 # Project specific
 .code-review-graph/
+.commandcode/
 reports/
 sessions/*
 !sessions/.gitignore
