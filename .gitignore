@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Project specific
+reports/
+sessions/*
+!sessions/.gitignore
+auth_profiles/*
+!auth_profiles/.gitignore
+!auth_profiles/example.json
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local

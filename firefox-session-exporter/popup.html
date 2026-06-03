@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { 
+      width: 250px; 
+      padding: 15px; 
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+      text-align: center; 
+      background: #1a1a2e;
+      color: #eee;
+    }
+    h3 { margin-top: 0; color: #00d4ff; }
+    p { font-size: 12px; color: #aaa; margin-bottom: 15px; }
+    button { 
+      background: #00d4ff; 
+      color: #000; 
+      border: none; 
+      padding: 10px 20px; 
+      border-radius: 5px; 
+      cursor: pointer; 
+      font-weight: bold; 
+      width: 100%; 
+      font-size: 14px;
+    }
+    button:hover { background: #00a8cc; }
+    #status { 
+      margin-top: 10px; 
+      color: #4ade80; 
+      font-size: 12px; 
+      display: none; 
+    }
+  </style>
+</head>
+<body>
+  <h3>Export Live Session</h3>
+  <p>Make sure you are on the target AI chat page and logged in.</p>
+  <button id="exportBtn">Export Session JSON</button>
+  <div id="status">Session exported successfully!</div>
+  <script src="popup.js"></script>
+</body>
+</html>

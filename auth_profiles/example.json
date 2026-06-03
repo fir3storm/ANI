@@ -1,0 +1,19 @@
+{
+  "name": "Example Chatbot",
+  "url": "https://chat.example.com/login",
+  "auth_type": "credentials",
+  "selectors": {
+    "username_field": "input#email",
+    "password_field": "input#password",
+    "submit_button": "button.login-btn"
+  },
+  "credentials": {
+    "username": "your-email@example.com",
+    "password": "your-password-here"
+  },
+  "post_login": {
+    "success_indicator": ".chat-container",
+    "failure_indicator": ".alert-danger",
+    "wait_ms": 3000
+  }
+}

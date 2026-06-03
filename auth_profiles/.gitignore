@@ -1,0 +1,4 @@
+# Ignore all auth profiles except examples
+*
+!.gitignore
+!example.json
