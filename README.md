@@ -1,129 +1,128 @@
 # AI Siege
 
-**Autonomous AI Prompt Injection Pentest Tool**
+> Autonomous prompt-injection and jailbreak testing for AI chat interfaces.
 
-AI Siege is a powerful penetration testing tool that launches adaptive, AI-powered attacks against chatbot interfaces. It uses **DeepSeek** as the attacker brain to read target AI responses, adapt its strategy, and iteratively craft smarter attacks until it either breaks through or exhausts its attempts.
+AI Siege helps authorized security testers evaluate how well chatbot interfaces withstand prompt injection, jailbreak, system prompt leakage, and data exfiltration attempts. It can run from a Firefox sidebar inside your logged-in browser session, or from the Python CLI for automated scans and reports.
 
----
+## Highlights
 
-## Features
-
-- **Adaptive Attack Engine** - DeepSeek reads every response and iteratively crafts smarter attacks
-- **Firefox Sidebar Addon** - Attacks run directly inside your logged-in browser session
-- **20+ Attack Scenarios** - Prompt injection, jailbreak, system prompt extraction, data exfiltration
-- **Model Detection** - Identifies if the target is GPT, Claude, Gemini, or other LLMs
-- **Strict False-Positive Prevention** - Double-verifies all vulnerabilities before flagging
-- **Rich Visual Reports** - Red/green final verdicts with detailed evidence
+- **Adaptive attack loop** powered by DeepSeek, which reviews target responses and crafts follow-up attempts.
+- **Firefox sidebar workflow** for testing authenticated web chat sessions without rebuilding login flows.
+- **Python CLI** for repeatable scans, saved sessions, and HTML or JSON reports.
+- **Multiple attack families** covering injection, jailbreak, system prompt extraction, data exfiltration, encoding bypasses, and advanced flows.
+- **Model and interface detection** to identify target chat elements and likely AI providers.
+- **Evidence-first reporting** with clear vulnerable or secure verdicts.
 
 ## How It Works
 
+```mermaid
+flowchart LR
+    Tester[Tester in browser or CLI] --> Target[Target AI chat]
+    Target --> Response[Captured response]
+    Response --> Analyzer[DeepSeek attacker brain]
+    Analyzer --> Payload[Next payload]
+    Payload --> Target
+    Response --> Report[Final report and verdict]
 ```
-Your Browser (Logged In)    DeepSeek API (Attacker Brain)
-         │                            │
-    1. Navigate to target AI chat     │
-    2. Click attack button ──────────►│
-    3. DeepSeek crafts payload ◄──────│
-    4. Injects into chat box          │
-    5. Captures AI response ─────────►│
-    6. DeepSeek analyzes success ◄────│
-    7. If failed → craft NEW attack ──│ (repeat)
-    8. Final verdict: VULNERABLE/SECURE
+
+1. Open the target AI chat in Firefox or launch a CLI scan.
+2. Choose an attack category and, when using the sidebar, enter your DeepSeek API key.
+3. AI Siege submits a payload, captures the response, and evaluates the result.
+4. In adaptive mode, DeepSeek uses the response to craft the next attempt.
+5. The scan ends with evidence and a final verdict.
+
+## Project Layout
+
+```text
+ai-siege/
+|-- ai-pentest-addon/          Firefox sidebar extension
+|-- firefox-session-exporter/  Helper extension for exporting browser sessions
+|-- payloads/                  JSON payload libraries
+|-- src/                       Python CLI and scan engine
+|   |-- attacks/               Attack implementations
+|   |-- browser/               Playwright browser control and detection
+|   |-- detection/             Vulnerability pattern analysis
+|   |-- reporting/             Console and HTML report generation
+|   `-- cli.py                 Typer CLI entry point
+|-- auth_profiles/             Example auth profile and local profiles
+|-- sessions/                  Local saved browser sessions
+|-- requirements.txt
+|-- setup.py
+`-- start.bat                  Windows launcher
 ```
 
 ## Installation
 
-### 1. Clone the repository
+### Firefox Sidebar
+
+1. Open Firefox and go to `about:debugging#/runtime/this-firefox`.
+2. Select **Load Temporary Add-on...**.
+3. Open `ai-pentest-addon/manifest.json`.
+4. Pin or open the AI Siege sidebar.
+
+### Python CLI
 
 ```bash
-git clone https://github.com/abhirupguha/ai-siege.git
-cd ai-siege
-```
-
-### 2. Install the Firefox Addon
-
-1. Open Firefox and go to `about:debugging#/runtime/this-firefox`
-2. Click **"Load Temporary Add-on..."**
-3. Navigate to `ai-pentest-addon/` and select `manifest.json`
-4. The sidebar is now loaded
-
-### 3. Get a DeepSeek API Key
-
-1. Go to [platform.deepseek.com](https://platform.deepseek.com)
-2. Create an account and generate an API key
-3. Enter this key in the sidebar
-
-### Optional: Python CLI
-
-```bash
+python -m venv venv
+venv\Scripts\activate
 pip install -r requirements.txt
 playwright install chromium
-python -m src.cli scan "https://your-target.com"
+```
+
+You can also install the package locally:
+
+```bash
+pip install -e .
 ```
 
 ## Usage
 
-### Adaptive Mode (Recommended)
+### Sidebar Adaptive Scan
 
-1. Open Firefox sidebar → AI Siege
-2. Enter your DeepSeek API key
-3. Select **"Adaptive"** mode
-4. Set max rounds (default 15, up to 50)
-5. Click any adaptive attack button
-6. Watch real-time attack progression
-7. **STOP** anytime, or let it run to verdict
+1. Open the target chat in Firefox.
+2. Open the AI Siege sidebar.
+3. Enter your DeepSeek API key.
+4. Select adaptive mode and set the maximum rounds.
+5. Run an attack category and watch the live progression.
+6. Stop anytime, or let the scan reach its final verdict.
 
-### Standard Mode
+### CLI Scan
 
-Uses pre-built payloads for quick testing. Less effective against well-defended targets but useful for baseline testing.
+```bash
+python -m src.cli scan "https://your-target.example" --auth manual
+```
+
+Useful options:
+
+```bash
+python -m src.cli list-tests
+python -m src.cli sessions list
+python -m src.cli scan "https://your-target.example" --tests prompt_injection,jailbreak --output reports/scan.html
+python -m src.cli scan "https://your-target.example" --auth session --session-file session_example.json
+```
 
 ## Attack Categories
 
-| Category | Goal | Rounds |
-|----------|------|--------|
-| **Prompt Injection** | Override system instructions | Adaptive |
-| **Jailbreak** | Break safety restrictions | Adaptive |
-| **System Prompt Leak** | Extract hidden instructions | Adaptive |
-| **Data Exfiltration** | Generate exfil URLs/markdown | Adaptive |
+| Category | Purpose |
+| --- | --- |
+| `prompt_injection` | Tests whether user input can override trusted instructions. |
+| `jailbreak` | Probes role-play, policy bypass, and restriction-breaking behavior. |
+| `system_prompt` | Attempts to reveal hidden or internal instructions. |
+| `data_exfiltration` | Checks for unsafe URL, markdown, or data-leak generation. |
+| `encoding_bypass` | Uses encoded or obfuscated prompts to bypass filters. |
+| `advanced` | Runs multi-step and higher-complexity attack flows. |
 
-## Final Verdict
+## Reports and Local Data
 
-After each scan, AI Siege displays a clear verdict:
+- Reports are written to `reports/`.
+- Saved browser sessions are written to `sessions/`.
+- Authentication profiles live in `auth_profiles/`.
+- Local `.env`, reports, sessions, caches, and exported session JSON files are ignored by git.
 
-- **VULNERABLE (Red)** - AI defenses breached. Shows evidence and attack path.
-- **SECURE (Green)** - AI resisted all attacks. Defense is robust.
+## Safety
 
-## Architecture
-
-```
-ai-siege/
-├── ai-pentest-addon/          # Firefox sidebar addon
-│   ├── sidebar.html
-│   ├── sidebar.js             # Adaptive attack engine
-│   ├── deepseek.js            # DeepSeek API client
-│   └── manifest.json
-├── src/                       # Python CLI tool
-│   ├── browser/               # Playwright automation
-│   ├── attacks/               # Attack modules
-│   ├── detection/             # Vulnerability analysis
-│   ├── reporting/             # HTML/console reports
-│   └── cli.py                 # CLI entry point
-├── payloads/                  # Attack payloads (JSON)
-├── start.bat                  # Windows launcher
-└── setup.py
-```
-
-## Why "Siege"?
-
-A siege is a sustained, adaptive military operation that probes defenses, learns from each failed assault, and adjusts tactics until the walls are breached. That's exactly what this tool does - it lays siege to AI defenses with adaptive intelligence.
-
----
+AI Siege is for authorized security testing only. Test systems only when you have explicit written permission from the owner, and handle captured responses, sessions, cookies, and reports as sensitive data.
 
 ## Author
 
-**Abhirup Guha**
-
----
-
-## Disclaimer
-
-This tool is provided for **authorized security testing only**. Users must obtain explicit written permission before testing any AI system. The author is not responsible for misuse.
+Created by **Abhirup Guha**.

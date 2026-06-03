@@ -17,9 +17,11 @@ build/
 *.swo
 
 # Project specific
+.code-review-graph/
 reports/
 sessions/*
 !sessions/.gitignore
+session_*.json
 auth_profiles/*
 !auth_profiles/.gitignore
 !auth_profiles/example.json
