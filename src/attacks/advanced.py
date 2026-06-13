@@ -1,4 +1,4 @@
-"""Advanced attack module for AI Pentest Tool."""
+"""Advanced attack module for ANI."""
 
 from typing import List, Dict, Any
 from .base import BaseAttack, Vulnerability, Severity

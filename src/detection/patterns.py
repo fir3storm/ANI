@@ -1,4 +1,4 @@
-"""Response pattern matching for AI Pentest Tool."""
+"""Response pattern matching for ANI."""
 
 import re
 from typing import List, Dict, Any, Optional

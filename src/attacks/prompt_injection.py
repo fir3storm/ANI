@@ -1,4 +1,4 @@
-"""Prompt injection attack module for AI Pentest Tool."""
+"""Prompt injection attack module for ANI."""
 
 from typing import List, Dict, Any
 from .base import BaseAttack, Vulnerability, Severity

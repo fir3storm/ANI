@@ -1,4 +1,4 @@
-"""Jailbreak attack module for AI Pentest Tool."""
+"""Jailbreak attack module for ANI."""
 
 from typing import List, Dict, Any
 from .base import BaseAttack, Vulnerability, Severity

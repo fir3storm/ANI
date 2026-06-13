@@ -1,4 +1,4 @@
-"""Browser automation module for AI Pentest Tool."""
+"""Browser automation module for ANI."""
 
 from .controller import BrowserController
 from .chat_detector import ChatDetector

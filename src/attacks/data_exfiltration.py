@@ -1,4 +1,4 @@
-"""Data exfiltration attack module for AI Pentest Tool."""
+"""Data exfiltration attack module for ANI."""
 
 import re
 from typing import List, Dict, Any

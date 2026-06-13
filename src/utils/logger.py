@@ -1,4 +1,4 @@
-"""Logging setup for AI Pentest Tool."""
+"""Logging setup for ANI."""
 
 import logging
 import sys
@@ -12,7 +12,7 @@ console = Console()
 
 
 def setup_logger(
-    name: str = "ai_pentest",
+    name: str = "ani",
     level: int = logging.INFO,
     log_file: Optional[Path] = None,
 ) -> logging.Logger:
@@ -57,6 +57,6 @@ def setup_logger(
     return logger
 
 
-def get_logger(name: str = "ai_pentest") -> logging.Logger:
+def get_logger(name: str = "ani") -> logging.Logger:
     """Get existing logger by name."""
     return logging.getLogger(name)

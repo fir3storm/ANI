@@ -1,4 +1,4 @@
-"""Utility modules for AI Pentest Tool."""
+"""Utility modules for ANI."""
 
 from .config import Config
 from .logger import setup_logger

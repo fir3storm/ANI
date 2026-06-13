@@ -1,5 +1,5 @@
 // Content script - runs in the webpage context
-console.log("[CONTENT] AI Pentest content script loaded on:", window.location.href);
+console.log("[CONTENT] ANI content script loaded on:", window.location.href);
 
 browser.runtime.onMessage.addListener((message) => {
   console.log("[CONTENT] Received message:", message);

@@ -1,4 +1,4 @@
-"""Browser controller using Playwright for AI Pentest Tool."""
+"""Browser controller using Playwright for ANI."""
 
 import asyncio
 from pathlib import Path

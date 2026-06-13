@@ -1,4 +1,4 @@
-"""Encoding bypass attack module for AI Pentest Tool."""
+"""Encoding bypass attack module for ANI."""
 
 import base64
 from typing import List, Dict, Any

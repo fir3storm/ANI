@@ -1,4 +1,4 @@
-"""Reporting module for AI Pentest Tool."""
+"""Reporting module for ANI."""
 
 from .generator import ReportGenerator
 from .console import ConsoleReporter

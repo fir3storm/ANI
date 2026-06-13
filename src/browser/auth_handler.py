@@ -1,4 +1,4 @@
-"""Authentication handler for AI Pentest Tool."""
+"""Authentication handler for ANI."""
 
 import json
 import asyncio

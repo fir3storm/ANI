@@ -1,5 +1,5 @@
 """
-AI Siege - Autonomous AI Prompt Injection Pentest Tool
+ANI - Adversarial Neural Inspector
 
 A Python CLI tool and Firefox sidebar addon for testing AI chat interfaces
 against prompt injection vulnerabilities using adaptive DeepSeek-powered attacks.

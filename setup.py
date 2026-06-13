@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="ai-siege",
+    name="ani-security",
     version="1.0.0",
-    description="AI Siege - Autonomous AI Prompt Injection Pentest Tool",
+    description="ANI - Adversarial Neural Inspector",
     author="Abhirup Guha",
     packages=find_packages(),
     include_package_data=True,
@@ -19,7 +19,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "ai-siege=src.cli:app",
+            "ani=src.cli:app",
         ],
     },
     python_requires=">=3.9",

@@ -1,4 +1,4 @@
-"""Report generation for AI Pentest Tool."""
+"""Report generation for ANI - Adversarial Neural Inspector."""
 
 import json
 from pathlib import Path
@@ -92,7 +92,7 @@ class ReportGenerator:
         # Determine output path
         if not output_path:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            output_path = self.config.reports_dir / f"pentest_report_{timestamp}.html"
+            output_path = self.config.reports_dir / f"ani_report_{timestamp}.html"
         
         output_path.parent.mkdir(parents=True, exist_ok=True)
         
@@ -115,7 +115,7 @@ class ReportGenerator:
         
         report_data = {
             "metadata": {
-                "tool": "AI Siege - Autonomous AI Prompt Injection Pentest Tool",
+                "tool": "ANI - Adversarial Neural Inspector",
                 "version": "1.0.0",
                 "target_url": target_url,
                 "ai_model": ai_model,
@@ -129,7 +129,7 @@ class ReportGenerator:
         # Determine output path
         if not output_path:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            output_path = self.config.reports_dir / f"pentest_report_{timestamp}.json"
+            output_path = self.config.reports_dir / f"ani_report_{timestamp}.json"
         
         output_path.parent.mkdir(parents=True, exist_ok=True)
         

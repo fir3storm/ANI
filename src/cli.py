@@ -1,4 +1,4 @@
-"""CLI interface for AI Prompt Injection Pentest Tool."""
+"""CLI interface for ANI - Adversarial Neural Inspector."""
 
 import asyncio
 import sys
@@ -24,8 +24,8 @@ from .utils.config import get_config
 from .utils.logger import setup_logger, get_logger
 
 app = typer.Typer(
-    name="ai-siege",
-    help="AI Siege - Autonomous AI Prompt Injection Pentest Tool",
+    name="ani",
+    help="ANI - Adversarial Neural Inspector",
     add_completion=False,
 )
 console = Console()
@@ -378,14 +378,14 @@ def auth(
     
     elif action == "test-profile":
         console.print("[yellow]Profile testing requires browser automation[/yellow]")
-        console.print("[yellow]Use: python -m ai_pentest scan --url <URL> --auth credentials --auth-profile <PROFILE>[/yellow]")
+        console.print("[yellow]Use: ani scan <URL> --auth credentials --auth-profile <PROFILE>[/yellow]")
 
 
 @app.command()
 def version():
     """Show tool version."""
     from . import __version__
-    console.print(f"[bold cyan]AI Siege[/bold cyan] v{__version__} [dim]by Abhirup Guha[/dim]")
+    console.print(f"[bold cyan]ANI[/bold cyan] - Adversarial Neural Inspector v{__version__} [dim]by Abhirup Guha[/dim]")
 
 
 if __name__ == "__main__":

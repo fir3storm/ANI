@@ -1,11 +1,11 @@
 @echo off
-title AI Siege - Autonomous AI Pentest Tool
+title ANI - Adversarial Neural Inspector
 color 0B
 
 :MENU
 cls
 echo ============================================================
-echo              AI Siege - AI Pentest Tool
+echo          ANI - Adversarial Neural Inspector
 echo ============================================================
 echo.
 echo 1. Run Basic Scan (Manual Login)
@@ -194,7 +194,7 @@ goto MENU
 :EXIT
 cls
 echo ============================================================
-echo    Thank you for using AI Prompt Injection Pentest Tool!
+echo    Thank you for using ANI!
 echo ============================================================
 echo.
 timeout /t 2 >nul

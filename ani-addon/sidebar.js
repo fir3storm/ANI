@@ -125,7 +125,7 @@ function sendPayloadAndGetResponse(tabId, payload) {
     }, 12000);
 
     function handler(msg) {
-      if (msg.type === 'PENTEST_RESPONSE') {
+      if (msg.type === 'ANI_RESPONSE') {
         finish(msg.responseText || 'EMPTY_RESPONSE');
       }
     }
@@ -161,7 +161,7 @@ function sendPayloadAndGetResponse(tabId, payload) {
         }
         
         if (!inputEl) {
-          browser.runtime.sendMessage({ type: 'PENTEST_RESPONSE', responseText: 'NO_CHAT_BOX_FOUND' });
+          browser.runtime.sendMessage({ type: 'ANI_RESPONSE', responseText: 'NO_CHAT_BOX_FOUND' });
           return;
         }
         
@@ -264,15 +264,15 @@ function sendPayloadAndGetResponse(tabId, payload) {
                 aiResponseText = fullText.slice(Math.max(0, fullText.length - 2500));
               }
               
-              browser.runtime.sendMessage({ type: 'PENTEST_RESPONSE', responseText: aiResponseText });
+              browser.runtime.sendMessage({ type: 'ANI_RESPONSE', responseText: aiResponseText });
             } catch(e2) {
-              browser.runtime.sendMessage({ type: 'PENTEST_RESPONSE', responseText: '' });
+              browser.runtime.sendMessage({ type: 'ANI_RESPONSE', responseText: '' });
             }
           }, 6000);
         }, 600);
         
       } catch(e) {
-        browser.runtime.sendMessage({ type: 'PENTEST_RESPONSE', responseText: 'JSError: ' + e.message });
+        browser.runtime.sendMessage({ type: 'ANI_RESPONSE', responseText: 'JSError: ' + e.message });
       }
     } + ')(' + payloadStr + ')';
 
@@ -357,9 +357,9 @@ async function startStandard(category) {
   var resolved = false;
   
   function handler(msg) {
-    if (msg.type === 'PENTEST_RESULT') {
+    if (msg.type === 'ANI_RESULT') {
       addResult(msg.name, msg.vulnerable, msg.detail, false);
-    } else if (msg.type === 'PENTEST_DONE') {
+    } else if (msg.type === 'ANI_DONE') {
       var allResults = document.querySelectorAll('#results .item');
       var vulnCount = document.querySelectorAll('#results .item.vuln').length;
       
@@ -393,7 +393,7 @@ async function startStandard(category) {
   
   var code = '(' + function(cat, pList) {
     function sendResult(name, vuln, detail) {
-      browser.runtime.sendMessage({ type: 'PENTEST_RESULT', name: name, vulnerable: vuln, detail: detail || 'OK' });
+      browser.runtime.sendMessage({ type: 'ANI_RESULT', name: name, vulnerable: vuln, detail: detail || 'OK' });
     }
     
     var selectors = [
@@ -433,7 +433,7 @@ async function startStandard(category) {
     
     if (!inputEl) {
       sendResult('Chat', false, 'No chat box found');
-      browser.runtime.sendMessage({ type: 'PENTEST_DONE' });
+      browser.runtime.sendMessage({ type: 'ANI_DONE' });
       return;
     }
     
@@ -465,7 +465,7 @@ async function startStandard(category) {
     
     function runNext() {
       if (idx >= pList.length) {
-        browser.runtime.sendMessage({ type: 'PENTEST_DONE' });
+        browser.runtime.sendMessage({ type: 'ANI_DONE' });
         return;
       }
       

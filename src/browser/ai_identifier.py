@@ -1,4 +1,4 @@
-"""AI model identification for AI Pentest Tool."""
+"""AI model identification for ANI."""
 
 import re
 from typing import Optional, Dict, List, Tuple

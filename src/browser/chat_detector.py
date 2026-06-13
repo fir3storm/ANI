@@ -1,4 +1,4 @@
-"""Chat interface detection for AI Pentest Tool."""
+"""Chat interface detection for ANI."""
 
 import re
 from typing import Optional, List, Tuple

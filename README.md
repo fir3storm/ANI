@@ -1,8 +1,8 @@
-# AI Siege
+# ANI - Adversarial Neural Inspector
 
 > Autonomous prompt-injection and jailbreak testing for AI chat interfaces.
 
-AI Siege helps authorized security testers evaluate how well chatbot interfaces withstand prompt injection, jailbreak, system prompt leakage, and data exfiltration attempts. It can run from a Firefox sidebar inside your logged-in browser session, or from the Python CLI for automated scans and reports.
+ANI helps authorized security testers evaluate how well chatbot interfaces withstand prompt injection, jailbreak, system prompt leakage, and data exfiltration attempts. It can run from a Firefox sidebar inside your logged-in browser session, or from the Python CLI for automated scans and reports.
 
 ## Highlights
 
@@ -27,15 +27,15 @@ flowchart LR
 
 1. Open the target AI chat in Firefox or launch a CLI scan.
 2. Choose an attack category and, when using the sidebar, enter your DeepSeek API key.
-3. AI Siege submits a payload, captures the response, and evaluates the result.
+3. ANI submits a payload, captures the response, and evaluates the result.
 4. In adaptive mode, DeepSeek uses the response to craft the next attempt.
 5. The scan ends with evidence and a final verdict.
 
 ## Project Layout
 
 ```text
-ai-siege/
-|-- ai-pentest-addon/          Firefox sidebar extension
+ANI/
+|-- ani-addon/                 Firefox sidebar extension
 |-- firefox-session-exporter/  Helper extension for exporting browser sessions
 |-- payloads/                  JSON payload libraries
 |-- src/                       Python CLI and scan engine
@@ -57,8 +57,8 @@ ai-siege/
 
 1. Open Firefox and go to `about:debugging#/runtime/this-firefox`.
 2. Select **Load Temporary Add-on...**.
-3. Open `ai-pentest-addon/manifest.json`.
-4. Pin or open the AI Siege sidebar.
+3. Open `ani-addon/manifest.json`.
+4. Pin or open the ANI sidebar.
 
 ### Python CLI
 
@@ -80,7 +80,7 @@ pip install -e .
 ### Sidebar Adaptive Scan
 
 1. Open the target chat in Firefox.
-2. Open the AI Siege sidebar.
+2. Open the ANI sidebar.
 3. Enter your DeepSeek API key.
 4. Select adaptive mode and set the maximum rounds.
 5. Run an attack category and watch the live progression.
@@ -121,7 +121,7 @@ python -m src.cli scan "https://your-target.example" --auth session --session-fi
 
 ## Safety
 
-AI Siege is for authorized security testing only. Test systems only when you have explicit written permission from the owner, and handle captured responses, sessions, cookies, and reports as sensitive data.
+ANI is for authorized security testing only. Test systems only when you have explicit written permission from the owner, and handle captured responses, sessions, cookies, and reports as sensitive data.
 
 ## Author
 

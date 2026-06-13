@@ -1,4 +1,4 @@
-"""Base attack class for AI Pentest Tool."""
+"""Base attack class for ANI."""
 
 from abc import ABC, abstractmethod
 from typing import Optional, List, Dict, Any

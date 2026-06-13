@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "AI Siege",
+  "name": "ANI - Adversarial Neural Inspector",
   "version": "3.0",
   "description": "Run prompt injection tests directly in your active browser tab",
   "permissions": [
@@ -8,7 +8,7 @@
     "<all_urls>"
   ],
   "sidebar_action": {
-    "default_title": "AI Pentest Tool",
+    "default_title": "ANI",
     "default_panel": "sidebar.html"
   }
 }

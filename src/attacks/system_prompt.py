@@ -1,4 +1,4 @@
-"""System prompt extraction attack module for AI Pentest Tool."""
+"""System prompt extraction attack module for ANI."""
 
 from typing import List, Dict, Any
 from .base import BaseAttack, Vulnerability, Severity

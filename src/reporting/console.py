@@ -1,4 +1,4 @@
-"""Console reporting for AI Pentest Tool."""
+"""Console reporting for ANI - Adversarial Neural Inspector."""
 
 from typing import List, Dict, Any
 from rich.console import Console
@@ -38,7 +38,7 @@ class ConsoleReporter:
     def print_header(self, target_url: str, ai_model: str = None) -> None:
         """Print scan header."""
         header_text = Text()
-        header_text.append("AI Siege - Autonomous AI Prompt Injection Pentest Tool", style="bold cyan")
+        header_text.append("ANI - Adversarial Neural Inspector", style="bold cyan")
         header_text.append("\n")
         header_text.append(f"Target: {target_url}", style="white")
         

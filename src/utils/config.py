@@ -1,4 +1,4 @@
-"""Configuration management for AI Pentest Tool."""
+"""Configuration management for ANI."""
 
 import os
 from pathlib import Path
@@ -36,7 +36,7 @@ class ReportingConfig(BaseModel):
 
 
 class Config(BaseModel):
-    """Main configuration for AI Pentest Tool."""
+    """Main configuration for ANI."""
     browser: BrowserConfig = Field(default_factory=BrowserConfig)
     attack: AttackConfig = Field(default_factory=AttackConfig)
     reporting: ReportingConfig = Field(default_factory=ReportingConfig)
@@ -50,7 +50,7 @@ class Config(BaseModel):
     
     # Security
     encryption_key: Optional[str] = Field(
-        default_factory=lambda: os.getenv("AI_PENTEST_KEY", None)
+        default_factory=lambda: os.getenv("ANI_API_KEY")
     )
     
     def ensure_directories(self):

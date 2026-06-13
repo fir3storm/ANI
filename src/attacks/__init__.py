@@ -1,4 +1,4 @@
-"""Attack modules for AI Pentest Tool."""
+"""Attack modules for ANI."""
 
 from .base import BaseAttack, AttackResult
 from .prompt_injection import PromptInjectionAttack
