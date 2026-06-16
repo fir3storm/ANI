@@ -118,5 +118,5 @@ First public release of ANI under its current name (formerly "AI Siege"). This r
 
 Run with `python -m pytest`.
 
-[Unreleased]: https://github.com/fir3storm/ANI/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/fir3storm/ANI/releases/tag/v1.0.0
+[Unreleased]: https://github.com/fir3storm/ANI/compare/da2608a...HEAD
+[1.0.0]: https://github.com/fir3storm/ANI/commit/da2608a
