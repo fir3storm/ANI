@@ -40,19 +40,24 @@ class Config(BaseModel):
     browser: BrowserConfig = Field(default_factory=BrowserConfig)
     attack: AttackConfig = Field(default_factory=AttackConfig)
     reporting: ReportingConfig = Field(default_factory=ReportingConfig)
-    
+
     # Paths
     base_dir: Path = Field(default_factory=lambda: Path.cwd())
     payloads_dir: Path = Field(default_factory=lambda: Path.cwd() / "payloads")
     auth_profiles_dir: Path = Field(default_factory=lambda: Path.cwd() / "auth_profiles")
     sessions_dir: Path = Field(default_factory=lambda: Path.cwd() / "sessions")
     reports_dir: Path = Field(default_factory=lambda: Path.cwd() / "reports")
-    
+    encryption_key_path: Path = Field(default_factory=lambda: Path.home() / ".ani" / "encryption.key")
+
     # Security
     encryption_key: Optional[str] = Field(
         default_factory=lambda: os.getenv("ANI_API_KEY")
     )
-    
+
+    # LLM brain
+    llm_backend: str = "openai_compatible"
+    llm_model: str = "deepseek-chat"
+
     def ensure_directories(self):
         """Create necessary directories if they don't exist."""
         for dir_path in [
@@ -62,10 +67,10 @@ class Config(BaseModel):
             self.reports_dir,
         ]:
             dir_path.mkdir(parents=True, exist_ok=True)
-    
+
     @classmethod
-    def load(cls, config_path: Optional[Path] = None) -> "Config":
-        """Load configuration from file or use defaults."""
+    def load(cls) -> "Config":
+        """Load configuration with defaults."""
         config = cls()
         config.ensure_directories()
         return config

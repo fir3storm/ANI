@@ -8,6 +8,10 @@
     label { display: block; font-size: 11px; color: #888; margin: 8px 0 4px 0; }
     input[type="text"], input[type="password"] { width: 100%; padding: 8px; background: #0f3460; border: 1px solid #16213e; color: #eee; border-radius: 4px; box-sizing: border-box; font-size: 12px; }
     input:focus { outline: none; border-color: #00d4ff; }
+    .key-row { display: flex; gap: 6px; align-items: center; }
+    .key-row input[type="password"] { flex: 1; }
+    .key-row button { flex: 0 0 auto; width: auto; margin: 0; padding: 8px 12px; }
+    #saveKeyStatus { font-size: 10px; color: #4ade80; margin-top: 4px; min-height: 12px; }
     button { width: 100%; background: #16213e; color: #00d4ff; border: 1px solid #0f3460; padding: 10px; margin-bottom: 6px; border-radius: 4px; cursor: pointer; font-weight: bold; text-align: left; font-size: 12px; }
     button:hover:not(:disabled) { background: #0f3460; }
     button:disabled { opacity: 0.4; cursor: not-allowed; }
@@ -31,9 +35,13 @@
 </head>
 <body>
   <h2>ANI Security Testing</h2>
-  
+
   <label>DeepSeek API Key</label>
-  <input type="password" id="apiKey" placeholder="sk-...">
+  <div class="key-row">
+    <input type="password" id="apiKey" placeholder="sk-...">
+    <button id="saveKeyBtn">Save</button>
+  </div>
+  <div id="saveKeyStatus"></div>
   <div style="font-size: 10px; color: #666; margin-top: 2px;">Required for adaptive mode. Get it at platform.deepseek.com</div>
 
   <label>Target AI Model (optional hint)</label>
@@ -49,18 +57,18 @@
   </div>
 
   <div id="status">Ready. Enter your DeepSeek API key and select Adaptive mode.</div>
-  
+
   <div id="roundCounter" style="display:none"></div>
 
   <button id="stopBtn"> STOP ATTACK</button>
   <button id="diagBtn"> Diagnostic: Find Chat Box & Analyze Page</button>
-  
+
   <div class="section-title">Adaptive Attacks</div>
   <button class="adaptive-btn" onclick="startAdaptive('prompt_injection')"> Prompt Injection (Adaptive)</button>
   <button class="adaptive-btn" onclick="startAdaptive('jailbreak')"> Jailbreak (Adaptive)</button>
   <button class="adaptive-btn" onclick="startAdaptive('system_prompt')"> System Prompt Leak (Adaptive)</button>
   <button class="adaptive-btn" onclick="startAdaptive('data_exfiltration')"> Data Exfiltration (Adaptive)</button>
-  
+
   <div class="section-title">Standard Attacks</div>
   <button onclick="startStandard('prompt_injection')"> Prompt Injection (Standard)</button>
   <button onclick="startStandard('jailbreak')"> Jailbreak (Standard)</button>

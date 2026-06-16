@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "categories": [
+    "prompt_injection",
+    "jailbreak",
+    "system_prompt",
+    "data_exfiltration",
+    "encoding_bypass",
+    "advanced"
+  ],
+  "schema": {
+    "required": ["id", "name", "payload", "description", "severity"]
+  }
+}

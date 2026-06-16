@@ -5,7 +5,8 @@
   "description": "Run prompt injection tests directly in your active browser tab",
   "permissions": [
     "activeTab",
-    "<all_urls>"
+    "<all_urls>",
+    "storage"
   ],
   "sidebar_action": {
     "default_title": "ANI",

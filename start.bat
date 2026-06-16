@@ -8,6 +8,7 @@ echo ============================================================
 echo          ANI - Adversarial Neural Inspector
 echo ============================================================
 echo.
+echo 0. Setup / Install
 echo 1. Run Basic Scan (Manual Login)
 echo 2. Run Scan with Credentials
 echo 3. Run Scan with Exported Session File (Firefox Add-on)
@@ -20,8 +21,9 @@ echo 9. Exit
 echo.
 echo ============================================================
 
-set /p choice="Enter your choice (1-9): "
+set /p choice="Enter your choice (0-9): "
 
+if "%choice%"=="0" goto SETUP
 if "%choice%"=="1" goto SCAN_MANUAL
 if "%choice%"=="2" goto SCAN_CREDS
 if "%choice%"=="3" goto SCAN_SESSION_FILE
@@ -34,6 +36,45 @@ if "%choice%"=="9" goto EXIT
 
 echo Invalid choice. Please try again.
 timeout /t 2 >nul
+goto MENU
+
+:SETUP
+cls
+echo ============================================================
+echo                    Setup / Install
+echo ============================================================
+echo.
+if not exist venv (
+    echo Creating virtual environment...
+    python -m venv venv
+    if errorlevel 1 (
+        echo [ERROR] Failed to create venv. Ensure Python is on PATH.
+        pause
+        goto MENU
+    )
+) else (
+    echo Virtual environment already exists.
+)
+echo.
+echo Activating venv and installing requirements...
+call venv\Scripts\activate.bat
+pip install -r requirements.txt
+if errorlevel 1 (
+    echo [ERROR] pip install failed.
+    pause
+    goto MENU
+)
+echo.
+echo Installing Playwright Chromium browser...
+playwright install chromium
+if errorlevel 1 (
+    echo [WARNING] Playwright install failed - you may need to run it manually.
+)
+echo.
+echo ============================================================
+echo Setup complete! You can now use ANI.
+echo ============================================================
+pause
 goto MENU
 
 :SCAN_MANUAL
